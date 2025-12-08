@@ -40,7 +40,10 @@ const RecommendPage = () => {
       if (!API_KEY) throw new Error("API Key가 설정되지 않았습니다.");
 
       const genAI = new GoogleGenerativeAI(API_KEY);
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+const model = genAI.getGenerativeModel({
+  model: "gemini-2.5-flash-preview-09-2025"
+});
 
       const prompt = `
         너는 센스 있는 음악 큐레이터야.
@@ -55,7 +58,18 @@ const RecommendPage = () => {
         불필요한 말 없이 리스트만 출력해줘.
       `;
 
-      const result = await model.generateContent(prompt);
+      const result = await model.generateContent({
+  contents: [
+    {
+      role: "user",
+      parts: [{ text: prompt }]
+    }
+  ]
+});
+
+setRecommendations(result.response.text());
+
+setRecommendations(result.response.text());
       const response = await result.response;
       setRecommendations(response.text());
 

@@ -1,26 +1,30 @@
 import React, { useState, type ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './InformationPage.module.css'; // CSS 모듈 import
+import styles from './InformationPage.module.css';
 
-// state의 타입 정의
+// 1. state의 타입 정의 (요청하신 6가지 항목으로 변경)
 interface FormData {
-  mood: string;
-  weather: string;
-  genre: string;
-  activity: string;
+  situation: string; // 현 상황
+  mood: string;      // 현 기분
+  season: string;    // 계절
+  timeOfDay: string; // 시간대
+  genre: string;     // 음악 장르
+  weather: string;   // 현재 날씨
 }
 
 const InformationPage: React.FC = () => {
   const navigate = useNavigate();
   
+  // 2. 초기 상태값 설정
   const [formData, setFormData] = useState<FormData>({
+    situation: '',
     mood: '',
-    weather: '',
+    season: '',
+    timeOfDay: '',
     genre: '',
-    activity: ''
+    weather: ''
   });
 
-  // 이벤트 핸들러 타입 지정 (HTMLInputElement의 변경 이벤트)
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -30,9 +34,10 @@ const InformationPage: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    // 간단한 유효성 검사
-    if (!formData.mood || !formData.weather) {
-      alert("기분과 날씨를 입력해주세요!");
+    // 유효성 검사: 상황, 기분, 날씨 정도는 필수로 받는 것이 추천 정확도에 좋습니다.
+    // 필요에 따라 조건을 수정하세요.
+    if (!formData.situation || !formData.mood || !formData.weather) {
+      alert("정확한 추천을 위해 상황, 기분, 날씨는 꼭 입력해주세요!");
       return;
     }
     
@@ -42,40 +47,82 @@ const InformationPage: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>📋 정보를 알려주세요</h2>
+      <h2 className={styles.title}>📋 맞춤 추천을 위한 정보 입력</h2>
       <div className={styles.formWrapper}>
         
+        {/* 1. 현 상황 */}
         <label className={styles.labelGroup}>
-          <span>오늘 기분은 어떤가요?</span>
+          <span>현재 어떤 상황인가요?</span>
+          <input 
+            type="text" 
+            name="situation" 
+            placeholder="예: 코딩 중, 운동 중, 휴식, 출근길" 
+            value={formData.situation}
+            onChange={handleChange} 
+            className={styles.inputField}
+          />
+        </label>
+
+        {/* 2. 현 기분 */}
+        <label className={styles.labelGroup}>
+          <span>지금 기분은 어떤가요?</span>
           <input 
             type="text" 
             name="mood" 
-            placeholder="예: 우울함, 신남, 차분함" 
+            placeholder="예: 우울함, 신남, 차분함, 피곤함" 
             value={formData.mood}
             onChange={handleChange} 
             className={styles.inputField}
           />
         </label>
 
+        {/* 3. 계절 */}
         <label className={styles.labelGroup}>
-          <span>현재 날씨는요?</span>
+          <span>현재 계절은요?</span>
           <input 
             type="text" 
-            name="weather" 
-            placeholder="예: 비오는 날, 맑음" 
-            value={formData.weather}
+            name="season" 
+            placeholder="예: 늦가을, 무더운 여름, 쌀쌀한 봄" 
+            value={formData.season}
             onChange={handleChange} 
             className={styles.inputField}
           />
         </label>
 
+        {/* 4. 시간대 */}
+        <label className={styles.labelGroup}>
+          <span>지금 시간대는 언제인가요?</span>
+          <input 
+            type="text" 
+            name="timeOfDay" 
+            placeholder="예: 새벽, 늦은 밤, 점심시간, 해질녘" 
+            value={formData.timeOfDay}
+            onChange={handleChange} 
+            className={styles.inputField}
+          />
+        </label>
+
+        {/* 5. 음악 장르 */}
         <label className={styles.labelGroup}>
           <span>선호하는 장르가 있나요? (선택)</span>
           <input 
             type="text" 
             name="genre" 
-            placeholder="예: 재즈, K-pop" 
+            placeholder="예: 재즈, K-pop, 클래식, 힙합" 
             value={formData.genre}
+            onChange={handleChange} 
+            className={styles.inputField}
+          />
+        </label>
+
+        {/* 6. 현재 날씨 */}
+        <label className={styles.labelGroup}>
+          <span>현재 날씨는 어떤가요?</span>
+          <input 
+            type="text" 
+            name="weather" 
+            placeholder="예: 비오는 날, 맑음, 눈이 펑펑 옴" 
+            value={formData.weather}
             onChange={handleChange} 
             className={styles.inputField}
           />
