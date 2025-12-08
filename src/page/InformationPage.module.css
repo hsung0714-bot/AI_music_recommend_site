@@ -1,0 +1,49 @@
+/* InformationPage.module.css */
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px; /* 모바일 등에서 여백 확보를 위해 추가 */
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.formWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.labelGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* 라벨 텍스트와 입력창 사이 간격 */
+  font-weight: bold;
+}
+
+.inputField {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box; /* 패딩 포함 너비 계산 */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submitButton {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #45a049;
+}

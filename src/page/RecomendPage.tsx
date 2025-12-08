@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import styles from './RecommendPage.module.css';
+import styles from './RecomendPage.module.css';
 
 // 1. 사용자 입력 데이터의 타입을 미리 정의합니다.
 interface UserInputState {
