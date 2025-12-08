@@ -1,0 +1,149 @@
+/* 전체 컨테이너 */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Pretendard', sans-serif; /* 폰트는 프로젝트 설정에 따라 다를 수 있음 */
+  color: #333;
+}
+
+/* 제목 */
+.title {
+  margin-bottom: 30px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+/* 입력 정보 요약 박스 */
+.summaryBox {
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #e3f2fd;
+  border-radius: 12px;
+  color: #1565c0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #0d47a1;
+}
+
+/* 결과 출력 박스 (카드 형태) */
+.resultBox {
+  background-color: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  padding: 30px;
+  min-height: 300px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* AI 응답 텍스트 영역 */
+.content {
+  white-space: pre-line; /* 줄바꿈 유지 */
+  line-height: 2;
+  font-size: 17px;
+  color: #444;
+}
+
+/* 로딩 상태 */
+.loading {
+  text-align: center;
+  color: #888;
+}
+
+/* 빙글빙글 도는 애니메이션 (선택사항) */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  font-size: 40px;
+  margin-bottom: 10px;
+  display: inline-block;
+  animation: spin 2s linear infinite;
+}
+
+/* 에러 상태 */
+.error {
+  text-align: center;
+  color: #d32f2f;
+}
+
+.retryBtn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: transparent;
+  border: 1px solid #d32f2f;
+  color: #d32f2f;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.retryBtn:hover {
+  background-color: #ffebee;
+}
+
+/* 하단 버튼 그룹 */
+.buttonGroup {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* 공통 버튼 스타일 */
+.button {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  color: white;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 개별 버튼 색상 */
+.refreshButton {
+  background-color: #2196F3; /* 파란색 */
+}
+
+.refreshButton:hover {
+  background-color: #1e88e5;
+}
+
+.homeButton {
+  background-color: #78909c; /* 회색 */
+}
+
+.homeButton:hover {
+  background-color: #607d8b;
+}
