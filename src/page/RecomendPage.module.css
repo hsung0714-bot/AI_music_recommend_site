@@ -1,149 +1,282 @@
+/* ResultPage.module.css */
+
 /* 전체 컨테이너 */
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 60px 40px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-  font-family: 'Pretendard', sans-serif; /* 폰트는 프로젝트 설정에 따라 다를 수 있음 */
-  color: #333;
+  font-family: 'Pretendard', sans-serif;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 /* 제목 */
 .title {
-  margin-bottom: 30px;
-  font-size: 28px;
+  margin-bottom: 40px;
+  font-size: 2.5rem;
   font-weight: 700;
-  color: #2c3e50;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 20px rgba(255, 255, 255, 0.1);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  position: relative;
+  z-index: 1;
 }
 
 /* 입력 정보 요약 박스 */
 .summaryBox {
-  margin-bottom: 25px;
-  padding: 15px;
-  background-color: #e3f2fd;
-  border-radius: 12px;
-  color: #1565c0;
+  margin-bottom: 35px;
+  padding: 20px 25px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  color: #e0e0e0;
   font-size: 16px;
-  line-height: 1.5;
+  line-height: 1.8;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.2s;
+  position: relative;
+  z-index: 1;
 }
 
 .highlight {
-  font-weight: bold;
-  color: #0d47a1;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 /* 결과 출력 박스 (카드 형태) */
 .resultBox {
-  background-color: #ffffff;
-  border: 1px solid #eee;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-  padding: 30px;
-  min-height: 300px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+  padding: 40px;
+  min-height: 350px;
+  box-shadow: 
+    0 10px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05);
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.4s;
+  position: relative;
+  z-index: 1;
+}
+
+.resultBox:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 15px 50px rgba(0, 0, 0, 0.6),
+    inset 0 1px 2px rgba(255, 255, 255, 0.08);
 }
 
 /* AI 응답 텍스트 영역 */
 .content {
-  white-space: pre-line; /* 줄바꿈 유지 */
+  white-space: pre-line;
   line-height: 2;
   font-size: 17px;
-  color: #444;
+  color: #d0d0d0;
+  letter-spacing: 0.3px;
 }
 
 /* 로딩 상태 */
 .loading {
   text-align: center;
-  color: #888;
+  color: #a0a0a0;
+  font-size: 18px;
 }
 
-/* 빙글빙글 도는 애니메이션 (선택사항) */
+/* 빙글빙글 도는 애니메이션 */
 @keyframes spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
 .spinner {
-  font-size: 40px;
-  margin-bottom: 10px;
+  font-size: 50px;
+  margin-bottom: 20px;
   display: inline-block;
   animation: spin 2s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
 /* 에러 상태 */
 .error {
   text-align: center;
-  color: #d32f2f;
+  color: #ff6b6b;
+  font-size: 18px;
 }
 
 .retryBtn {
-  margin-top: 10px;
-  padding: 8px 16px;
-  background-color: transparent;
-  border: 1px solid #d32f2f;
-  color: #d32f2f;
-  border-radius: 6px;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background: rgba(255, 107, 107, 0.1);
+  border: 2px solid rgba(255, 107, 107, 0.5);
+  color: #ff6b6b;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
 }
 
 .retryBtn:hover {
-  background-color: #ffebee;
+  background: rgba(255, 107, 107, 0.2);
+  border-color: rgba(255, 107, 107, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
 }
 
 /* 하단 버튼 그룹 */
 .buttonGroup {
-  margin-top: 40px;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+  animation-delay: 0.6s;
+  position: relative;
+  z-index: 1;
 }
 
 /* 공통 버튼 스타일 */
 .button {
-  padding: 14px 24px;
-  border: none;
+  padding: 16px 32px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
-  transition: transform 0.1s, box-shadow 0.2s;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   color: white;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.button:hover::before {
+  width: 300px;
+  height: 300px;
 }
 
 .button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .button:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
 }
 
 .button:disabled {
-  background-color: #ccc;
+  background: rgba(100, 100, 100, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
   cursor: not-allowed;
   transform: none;
+  opacity: 0.5;
+}
+
+.button:disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* 개별 버튼 색상 */
 .refreshButton {
-  background-color: #2196F3; /* 파란색 */
+  background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
 }
 
 .refreshButton:hover {
-  background-color: #1e88e5;
+  background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
 }
 
 .homeButton {
-  background-color: #78909c; /* 회색 */
+  background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
 }
 
 .homeButton:hover {
-  background-color: #607d8b;
+  background: linear-gradient(135deg, #3a3a3a, #2a2a2a);
+}
+
+/* 페이드인 애니메이션 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+  
+  .resultBox {
+    padding: 30px 20px;
+    min-height: 300px;
+  }
+  
+  .buttonGroup {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .button {
+    width: 100%;
+  }
 }
