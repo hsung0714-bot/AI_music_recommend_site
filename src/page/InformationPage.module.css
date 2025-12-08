@@ -1,8 +1,8 @@
 /* InformationPage.module.css */
 
 .container {
-  max-width: 600px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
   padding: 60px 40px;
   min-height: 100vh;
   display: flex;
@@ -11,6 +11,7 @@
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .container::before {
@@ -41,14 +42,19 @@
 }
 
 .formWrapper {
-  display: flex;
-  flex-direction: column;
   gap: 25px;
   position: relative;
   z-index: 1;
   animation: fadeInUp 0.8s ease-out forwards;
   opacity: 0;
   animation-delay: 0.2s;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
 }
 
 .labelGroup {
@@ -60,6 +66,7 @@
   font-size: 0.95rem;
   letter-spacing: 0.5px;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 .labelGroup:hover {
@@ -102,6 +109,7 @@
 .submitButton {
   margin-top: 30px;
   padding: 16px;
+  width: 100%;
   background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
   color: #ffffff;
   border: 2px solid rgba(255, 255, 255, 0.2);
@@ -117,6 +125,7 @@
   animation: fadeInUp 0.8s ease-out forwards;
   opacity: 0;
   animation-delay: 0.4s;
+  box-sizing: border-box;
 }
 
 .submitButton::before {
@@ -161,18 +170,156 @@
   }
 }
 
-/* 반응형 디자인 */
-@media (max-width: 768px) {
+/* 태블릿 사이즈 (768px ~ 1024px) */
+@media (max-width: 1024px) {
   .container {
-    padding: 40px 20px;
+    padding: 50px 30px;
+  }
+  
+  .formWrapper {
+    max-width: 550px;
   }
   
   .title {
-    font-size: 2rem;
-    margin-bottom: 40px;
+    font-size: 2.2rem;
+  }
+}
+
+/* 모바일 세로 (481px ~ 767px) */
+@media (max-width: 767px) {
+  .container {
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 35px;
+    letter-spacing: 0.5px;
   }
   
   .formWrapper {
     gap: 20px;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .labelGroup {
+    font-size: 0.9rem;
+    gap: 8px;
+  }
+  
+  .inputField {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+  
+  .submitButton {
+    padding: 14px;
+    font-size: 16px;
+    margin-top: 25px;
+  }
+}
+
+/* 작은 모바일 (320px ~ 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 15px;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    letter-spacing: 0.3px;
+  }
+  
+  .formWrapper {
+    gap: 18px;
+  }
+  
+  .labelGroup {
+    font-size: 0.85rem;
+    gap: 7px;
+  }
+  
+  .inputField {
+    padding: 11px 14px;
+    font-size: 14px;
+    border-radius: 10px;
+  }
+  
+  .inputField:focus {
+    transform: translateY(-1px);
+  }
+  
+  .submitButton {
+    padding: 13px;
+    font-size: 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+  }
+  
+  .submitButton:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* 매우 작은 화면 (~ 320px) */
+@media (max-width: 320px) {
+  .container {
+    padding: 25px 12px;
+  }
+  
+  .title {
+    font-size: 1.3rem;
+    margin-bottom: 25px;
+  }
+  
+  .formWrapper {
+    gap: 15px;
+  }
+  
+  .labelGroup {
+    font-size: 0.8rem;
+  }
+  
+  .inputField {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .submitButton {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* 가로 모드 모바일 */
+@media (max-height: 600px) and (orientation: landscape) {
+  .container {
+    padding: 30px 20px;
+    min-height: auto;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+  }
+  
+  .formWrapper {
+    gap: 15px;
+  }
+  
+  .labelGroup {
+    gap: 6px;
+  }
+  
+  .inputField {
+    padding: 10px 14px;
+  }
+  
+  .submitButton {
+    margin-top: 20px;
+    padding: 12px;
   }
 }
