@@ -3,20 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import styles from './InformationPage.module.css';
 import Season from '../component/Informationcomponet/Season';
 
-// 1. state의 타입 정의 (요청하신 6가지 항목으로 변경)
+// state의 타입 정의
 interface FormData {
-  situation: string; // 현 상황
-  mood: string;      // 현 기분
-  season: string;    // 계절
-  timeOfDay: string; // 시간대
-  genre: string;     // 음악 장르
-  weather: string;   // 현재 날씨
+  situation: string; 
+  mood: string; 
+  season: string;
+  timeOfDay: string; 
+  genre: string; 
+  weather: string;  
 }
 
 const InformationPage: React.FC = () => {
   const navigate = useNavigate();
   
-  // 2. 초기 상태값 설정
+  // 초기 상태값
   const [formData, setFormData] = useState<FormData>({
     situation: '',
     mood: '',
@@ -35,8 +35,6 @@ const InformationPage: React.FC = () => {
   };
 
   const handleSubmit = () => {
-    // 유효성 검사: 상황, 기분, 날씨 정도는 필수로 받는 것이 추천 정확도에 좋습니다.
-    // 필요에 따라 조건을 수정하세요.
     if (!formData.situation || !formData.mood || !formData.weather) {
       alert("정확한 추천을 위해 상황, 기분, 날씨는 꼭 입력해주세요!");
       return;
@@ -50,8 +48,7 @@ const InformationPage: React.FC = () => {
     <div className={styles.container}>
       <h2 className={styles.title}>맞춤 추천을 위한 정보 입력</h2>
       <div className={styles.formWrapper}>
-        
-        {/* 1. 현 상황 */}
+
         <label className={styles.labelGroup}>
           <span>현재 어떤 상황인가요?</span>
           <input 
@@ -64,7 +61,6 @@ const InformationPage: React.FC = () => {
           />
         </label>
 
-        {/* 2. 현 기분 */}
         <label className={styles.labelGroup}>
           <span>지금 기분은 어떤가요?</span>
           <input 
@@ -77,7 +73,6 @@ const InformationPage: React.FC = () => {
           />
         </label>
 
-        {/* 3. 계절 */}
         <Season
           selectedSeason={formData.season}
           onSeasonChange={(season) =>
@@ -85,8 +80,6 @@ const InformationPage: React.FC = () => {
           }
         />
 
-
-        {/* 4. 시간대 */}
         <label className={styles.labelGroup}>
           <span>지금 시간대는 언제인가요?</span>
           <input 
@@ -99,7 +92,6 @@ const InformationPage: React.FC = () => {
           />
         </label>
 
-        {/* 5. 현재 날씨 */}
         <label className={styles.labelGroup}>
           <span>현재 날씨는 어떤가요?</span>
           <input 
@@ -112,7 +104,6 @@ const InformationPage: React.FC = () => {
           />
         </label>
 
-        {/* 6. 음악 장르 */}
         <label className={styles.labelGroup}>
           <span>선호하는 장르가 있나요? (선택)</span>
           <input 
